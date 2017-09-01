@@ -1,0 +1,14 @@
+version:        "3.3"
+
+services:
+  web:
+    image:      retool/core
+    ports:
+      - 80:80
+      - 443:443
+    configs:
+      - source: default.conf
+        target: /etc/nginx/conf.d/default.conf
+configs:
+  default.conf:
+    external:   true
