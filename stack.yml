@@ -3,17 +3,14 @@ version:              '3.3'
 services:
   web:
     image:            retool/core
-    build:            https://github.com/retool-solutions/core.git
+    build:            .
     ports:
       - 80:80
       - 443:443
     configs:
       - source:       default.conf
         target:       /etc/nginx/conf.d/default.conf
-    volumes:
-      - ./code:/usr/share/nginx/html:ro
-      - ./configs/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    command:          nginx-debug -g 'daemon off;'
+    command:          nginx -g 'daemon off;'
     deploy:
       replicas:       2
       restart_policy:
