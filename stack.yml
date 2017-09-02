@@ -1,0 +1,20 @@
+version:              '3.3'
+
+services:
+  web:
+    image:            retool/core
+    build:            .
+    ports:
+      - 80:80
+      - 443:443
+    configs:
+      - source:       default.conf
+        target:       /etc/nginx/conf.d/default.conf
+    command:          nginx -g 'daemon off;'
+    deploy:
+      replicas:       2
+      restart_policy:
+        condition:    on-failure
+configs:
+  default.conf:
+    external:         true
